@@ -24,6 +24,46 @@ public class Graph {
             adjacencyList.get(destination).add(source);
         }
     }
+    public void addEdge(int source, int destination){
+        adjacencyList.get(source).add(destination);
+        }
+
+
+    /**
+     * method to get a topological sorting of the given graph.
+     */
+
+    public void generateToplogicalSort(){
+
+        List<Integer>result = new ArrayList<>();
+
+
+        boolean[] visited= new boolean[vertices];
+
+        for (int vert = 0; vert < vertices; vert++) {
+            if(!visited[vert]){
+                topoUtil(vert,visited,result);
+            }
+
+        }
+        // now that result if filled lets print it
+
+        for(Integer vertex : result){
+            System.out.print("--"+vertex);
+        }
+    }
+
+    private void topoUtil(int vert, boolean[] visited, List<Integer> result) {
+        visited[vert]=true;
+
+        for(int child:adjacencyList.get(vert)){
+            if(!visited[child]){
+                topoUtil(child,visited,result);
+            }
+        }
+        result.add(vert);
+    }
+
     public void printGraph(){
         for (int i = 0; i < vertices; i++) {
             System.out.print("adjacency of "+i+" :");
@@ -35,15 +75,21 @@ public class Graph {
     }
 
     public static void runExample(){
-        Graph graph = new Graph(5);
-        graph.addEdge(0,1,false);
-        graph.addEdge(0,2,false);
-        graph.addEdge(1,2,false);
-        graph.addEdge(3,4,false);
-        graph.addEdge(3,1,false);
-        graph.addEdge(4,2,false);
-        graph.printGraph();
+        Graph g = new Graph(6);
+        g.addEdge(5, 2);
+        g.addEdge(5, 0);
+        g.addEdge(4, 0);
+        g.addEdge(4, 1);
+        g.addEdge(2, 3);
+        g.addEdge(3, 1);
+        g.addEdge(5, 2);
+        g.addEdge(5, 0);
+        g.addEdge(4, 0);
+        g.addEdge(4, 1);
+        g.addEdge(2, 3);
+        g.addEdge(3, 1);
 
+        g.generateToplogicalSort();
     }
 
 }
