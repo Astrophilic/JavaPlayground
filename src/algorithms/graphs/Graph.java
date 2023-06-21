@@ -1,7 +1,7 @@
 package algorithms.graphs;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Graph {
@@ -74,6 +74,37 @@ public class Graph {
         }
     }
 
+    public void dfsOfGraph(){
+        boolean visited[]= new boolean[vertices];
+
+        Arrays.fill(visited,false);
+        List<Integer>dfsList = new ArrayList<>();
+        for (int i = 0; i < vertices; i++) {
+            if(!visited[i]){
+                dfsUtil(i,visited,dfsList);
+            }
+
+        }
+        System.out.println("\n printing the dfs of graph");
+        for (Integer node :
+                dfsList) {
+
+            System.out.print(node+" --- ");
+        }
+
+    }
+
+    private void dfsUtil(int i, boolean[] visited, List<Integer> dfsList) {
+        visited[i]=true;
+
+        dfsList.add(i);
+        for(Integer child:adjacencyList.get(i)){
+            if(!visited[child]){
+                dfsUtil(child,visited,dfsList);
+            }
+        }
+    }
+
     public static void runExample(){
         Graph g = new Graph(6);
         g.addEdge(5, 2);
@@ -90,6 +121,7 @@ public class Graph {
         g.addEdge(3, 1);
 
         g.generateToplogicalSort();
+        g.dfsOfGraph();
     }
 
 }
