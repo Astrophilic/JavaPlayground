@@ -129,6 +129,24 @@ public class Graph {
         }
     }
 
+    public boolean hasCycle(int src, HashSet<Integer>recStack, boolean [] visited ){
+        recStack.add(src);
+        visited[src]=true;
+
+        for(Integer child:adjacencyList.get(src)){
+
+            if(recStack.contains(child)){
+                return true;
+            }
+
+            if(!visited[child] && hasCycle(child,recStack,visited)){
+                return true;
+            }
+        }
+        recStack.remove(src);
+        return false;
+    }
+
     public static void runExample(){
         Graph g = new Graph(6);
         g.addEdge(5, 2);
@@ -151,6 +169,24 @@ public class Graph {
         g.generateToplogicalSort();
         g.dfsOfGraph();
         g.bfsOfGraph();
+
+        HashSet<Integer>recStack = new HashSet<>();
+        boolean[] visited = new boolean[g.vertices];
+        Arrays.fill(visited,false);
+        boolean flag =false;
+        for (int i = 0; i < g.vertices; i++) {
+            if(!visited[i]){
+                if(g.hasCycle(i,recStack,visited)){
+                    System.out.println("has cycle ");
+                    flag=true;
+                    break;
+                }
+            }
+
+        }
+        if(!flag){
+            System.out.println("doesnt have cycle");
+        }
 
     }
 
