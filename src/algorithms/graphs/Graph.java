@@ -1,8 +1,6 @@
 package algorithms.graphs;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class Graph {
     private Integer vertices;
@@ -94,6 +92,32 @@ public class Graph {
 
     }
 
+    public void bfsOfGraph(){
+        boolean[] visited = new boolean[vertices];
+        Arrays.fill(visited,false);
+
+        Queue<Integer>queue = new LinkedList<>();
+        List<Integer>bfsList = new ArrayList<>();
+        queue.add(0);
+        visited[0]=true;
+        while(!queue.isEmpty()){
+            Integer currentNode =queue.poll();
+            bfsList.add(currentNode);
+
+            for(Integer child:adjacencyList.get(currentNode)){
+                if(!visited[child]){
+                    visited[child]=true;
+                    queue.offer(child);
+                }
+            }
+        }
+
+        System.out.println("\n printing bfs order ");
+        for(Integer node:bfsList){
+            System.out.print(node+" ---- ");
+        }
+    }
+
     private void dfsUtil(int i, boolean[] visited, List<Integer> dfsList) {
         visited[i]=true;
 
@@ -119,9 +143,15 @@ public class Graph {
         g.addEdge(4, 1);
         g.addEdge(2, 3);
         g.addEdge(3, 1);
+        g.addEdge(0,1);
+        g.addEdge(0,2);
+        g.addEdge(0,3);
+        g.addEdge(2,4);
 
         g.generateToplogicalSort();
         g.dfsOfGraph();
+        g.bfsOfGraph();
+
     }
 
 }
