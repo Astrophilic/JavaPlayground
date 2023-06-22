@@ -16,4 +16,13 @@ public class PaymentContext {
     public void pay(){
         paymentStrategy.pay(cost);
     }
+
+    public static void runExample(){
+        PaymentContext paymentContext = new PaymentContext(100);
+        paymentContext.setPaymentStrategy(new CreditCard("pankaj","12345"));
+        paymentContext.pay();
+        paymentContext.setPaymentStrategy(new Paypal("paypalPankaj","pnkj@gmail.com"));
+        paymentContext.pay();
+
+    }
 }
