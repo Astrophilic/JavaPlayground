@@ -1,6 +1,5 @@
 package designpatterns.singleton;
 
-import sun.rmi.runtime.Log;
 
 public class LoggerContext {
 
