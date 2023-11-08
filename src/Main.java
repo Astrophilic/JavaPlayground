@@ -1,17 +1,15 @@
 import algorithms.dynamicProgramming.Knapsack;
 import algorithms.graphs.Graph;
-import algorithms.sorting.MergeSort;
+import designpatterns.decorator.TextContext;
+
 
 class Solution {
 
     public static void main(String[] args) throws InterruptedException {
 
 
-        Graph.runExample();
-        System.out.println();
-        Knapsack.runKnapackExample();
+        TextContext.runExample();
 
-        MergeSort mergeSort = new MergeSort(5);
 
         }
     }

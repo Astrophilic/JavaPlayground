@@ -16,6 +16,7 @@ public class GameContext {
     public static void runGameExample(){
         GameContext context = new GameContext();
         context.setPathFindingStrategy(new AstarStrategy());
+        context.setPathFindingStrategy(new BfsStrategy());
         context.findPath();
     }
 }
