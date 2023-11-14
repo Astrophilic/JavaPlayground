@@ -18,5 +18,10 @@ class Solution {
         System.out.println("f6");
         System.out.println("f7");
         System.out.println("f8");
+        System.out.println("f9");
+        System.out.println("f10");
+        System.out.println("f11");
+        System.out.println("patch2-1");
+        System.out.println("patch2-2");
         }
     }
